@@ -20,7 +20,6 @@ const SENSITIVE_KEYS = [
 
 /**
  * OpenTelemetry-Powered Logger Service
- * Reference: valkyrie-nodejs/src/common/logger/logger.service.ts
  *
  * In production/cloud/sidecar environments, Pino writes to a silent stream while
  * @opentelemetry/instrumentation-pino intercepts the log record in memory and

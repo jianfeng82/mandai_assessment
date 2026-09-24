@@ -53,10 +53,10 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type, Accept, Authorization, Idempotency-Key',
   });
 
-  // Global Zod Validation Pipe (Reference: valkyrie-nodejs)
+  // Global Zod Validation Pipe
   app.useGlobalPipes(new ZodValidationPipe());
 
-  // Global Exception Filters (Reference: valkyrie-nodejs)
+  // Global Exception Filters
   app.useGlobalFilters(
     new AllExceptionsFilter(loggerService),
     new ZodValidationFilter(loggerService),

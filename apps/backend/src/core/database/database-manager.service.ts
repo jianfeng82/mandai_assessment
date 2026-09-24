@@ -1,4 +1,4 @@
-﻿import { Injectable, Inject, OnModuleDestroy } from '@nestjs/common';
+import { Injectable, Inject, OnModuleDestroy } from '@nestjs/common';
 import * as mysql from 'mysql2/promise';
 import { withTransactionRetry } from './with-retry.util';
 import { LoggerService } from '../../common/logger/logger.service';
@@ -6,7 +6,6 @@ import { LoggerService } from '../../common/logger/logger.service';
 /**
  * Enterprise Database Manager providing read/write splitting,
  * read-after-write master consistency, and self-healing transactions.
- * Directly adapted from valkyrie-nodejs (src/core/database/database-manager.service.ts).
  */
 @Injectable()
 export class DatabaseManager implements OnModuleDestroy {

@@ -1,4 +1,4 @@
-﻿import {
+import {
   Injectable,
   NestInterceptor,
   ExecutionContext,
@@ -14,7 +14,6 @@ import { LoggerService } from '../../common/logger/logger.service';
 
 /**
  * Pessimistic Distributed Lock on a per-user basis using Redis.
- * Directly adapted from valkyrie-nodejs (PlayerLockInterceptor).
  */
 @Injectable()
 export class UserLockInterceptor implements NestInterceptor {

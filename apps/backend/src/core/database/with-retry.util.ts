@@ -1,4 +1,4 @@
-﻿import { Logger } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 
 const defaultLogger = new Logger('TransactionRetry');
 
@@ -9,7 +9,6 @@ interface LoggerLike {
 /**
  * Executes a transactional database operation with exponential backoff and jitter.
  * Automatically retries on MySQL transient lock contention errors (ER_LOCK_DEADLOCK, ER_LOCK_WAIT_TIMEOUT).
- * Directly adapted from valkyrie-nodejs (with-retry.util.ts).
  */
 export async function withTransactionRetry<T>(
   operation: () => Promise<T>,

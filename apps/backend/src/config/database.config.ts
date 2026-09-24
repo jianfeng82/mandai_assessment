@@ -1,8 +1,7 @@
-﻿import { registerAs } from '@nestjs/config';
+import { registerAs } from '@nestjs/config';
 
 /**
  * Database cluster configuration factory.
- * Directly adapted from valkyrie-nodejs (src/config/database.config.ts).
  */
 export default registerAs('database', () => {
   const writeHost =

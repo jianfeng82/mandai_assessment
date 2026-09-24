@@ -44,6 +44,3 @@ logs/
 # Docker
 mysql_data/
 redis_data/
-
-# Reference materials
-valkyrie-nodejs/

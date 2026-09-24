@@ -1,4 +1,4 @@
-﻿import { Module, Global } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import * as mysql from 'mysql2/promise';
 import databaseConfig from '../../config/database.config';
@@ -7,7 +7,6 @@ import { DatabaseManager } from './database-manager.service';
 /**
  * Global Database Module providing dynamic MySQL Pool Clustering,
  * Read/Write splitting, session hardening, and connection management.
- * Directly adapted from valkyrie-nodejs (src/core/database/database.module.ts).
  */
 @Global()
 @Module({

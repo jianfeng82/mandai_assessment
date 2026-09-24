@@ -1,6 +1,6 @@
-﻿import { DatabaseManager } from './database-manager.service';
+import { DatabaseManager } from './database-manager.service';
 
-describe('DatabaseManager (Valkyrie Core Database Engine)', () => {
+describe('DatabaseManager (Core Database Engine)', () => {
   let service: DatabaseManager;
   let mockCluster: any;
   let mockWriterPool: any;
