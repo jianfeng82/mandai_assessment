@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# 1. Get the name of the current branch
+CURRENT_BRANCH=$(git branch --show-current)
+
+# 2. If we are NOT on main or master, skip the rules entirely
+if [ "$CURRENT_BRANCH" != "main" ] && [ "$CURRENT_BRANCH" != "master" ]; then
+  exit 0
+fi
+
+# 3. If we ARE on main or master, enforce the format
+MSG_FILE=$1
+COMMIT_MSG=$(cat "$MSG_FILE")
+
+# The allowed Regex pattern
+REGEX="^(feat|fix|docs|style|refactor|test|chore|perf|build|cicd|revert|devops|security|others)(\([a-zA-Z0-9_-]+\))?: .+"
+
+# ANSI Color & Formatting Codes
+RED="\033[1;31m"
+GREEN="\033[0;32m"
+YELLOW="\033[1;33m"
+CYAN="\033[0;36m"
+BOLD="\033[1m"
+DIM="\033[2m"
+NC="\033[0m"
+
+# Check if the commit message matches
+if ! echo "$COMMIT_MSG" | grep -Eq "$REGEX"; then
+  printf "\n"
+  printf "${RED}════════════════════════════════════════════════════════════════════════${NC}\n"
+  printf " ${RED}${BOLD}❌ INVALID COMMIT MESSAGE FORMAT${NC} on branch ${YELLOW}'%s'${NC}\n" "$CURRENT_BRANCH"
+  printf "${RED}════════════════════════════════════════════════════════════════════════${NC}\n\n"
+  printf "  ${DIM}Your message:${NC}    ${RED}\"%s\"${NC}\n\n" "$COMMIT_MSG"
+  printf "  ${BOLD}Required Format:${NC}\n"
+  printf "    ${CYAN}<type>${NC}: <description>${NC}\n\n"
+  printf "  ${BOLD}Allowed Types:${NC}\n"
+  printf "    ${GREEN}feat${NC}, ${GREEN}fix${NC}, ${GREEN}docs${NC}, ${GREEN}style${NC}, ${GREEN}refactor${NC}, ${GREEN}test${NC}, ${GREEN}chore${NC},\n"
+  printf "    ${GREEN}perf${NC}, ${GREEN}build${NC}, ${GREEN}cicd${NC}, ${GREEN}revert${NC}, ${GREEN}devops${NC}, ${GREEN}security${NC}, ${GREEN}others${NC}\n\n"
+  printf "  ${BOLD}Examples:${NC}\n"
+  printf "    ${DIM}•${NC} ${GREEN}feat:${NC} add player daily login reward\n"
+  printf "    ${DIM}•${NC} ${GREEN}fix:${NC} prevent cache key expiration leak\n"
+  printf "    ${DIM}•${NC} ${GREEN}chore:${NC} update packages\n\n"
+  printf "${RED}════════════════════════════════════════════════════════════════════════${NC}\n\n"
+  
+  # Reject the commit
+  exit 1
+fi

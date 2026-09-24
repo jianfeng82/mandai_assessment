@@ -1,0 +1,31 @@
+{
+  "name": "mandai-assessment-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "High-Concurrency Product Management Application with Atomic Concurrency Control",
+  "scripts": {
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:build": "docker compose build",
+    "test:concurrency": "node scripts/stress-test.js",
+    "lint": "npm run lint --prefix apps/backend && npm run lint --prefix apps/storefront && npm run lint --prefix apps/admin",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,js,json,md}\" \"scripts/**/*.{ts,js}\"",
+    "format:check": "prettier --check \"apps/**/*.{ts,tsx,js,json,md}\" \"scripts/**/*.{ts,js}\"",
+    "prepare": "husky",
+    "test": "npm run test --prefix apps/backend",
+    "test:unit": "npm run test --prefix apps/backend",
+    "test:e2e": "npm run test:e2e --prefix apps/backend",
+    "test:security": "npm run test:security --prefix apps/backend",
+    "test:all": "npm run test:all --prefix apps/backend"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,json}": [
+      "prettier --write"
+    ]
+  }
+}
